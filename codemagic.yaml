@@ -1,0 +1,16 @@
+workflows:
+  build-android:
+    name: Build Android Debug APK
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      vars:
+        JAVA_HOME: /Applications/Android Studio.app/Contents/jre/Contents/Home
+      android: true
+    scripts:
+      - name: Clean
+        script: ./gradlew clean
+      - name: Assemble Debug
+        script: ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/apk/debug/*.apk
